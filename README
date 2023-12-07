@@ -1,1 +1,6 @@
 Projet n°2 : Base de données en Python
+
+Concevez une application interactive en Python avec la bibliothèque SQLite3, 
+reliée à une base de données que vous allez créer sur le sujet de votre choix
+L'application devra permettre à l'utilisateur d'ajouter, de mettre à jour,
+de rechercher et d'afficher des informations, tout cela à l'aide d'une interface console ou graphique.
