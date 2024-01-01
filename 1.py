@@ -81,12 +81,29 @@ c.execute("""
 #c.execute('''INSERT INTO lieu VALUES (15, 'Emirats Arabes Unis', 'Dubai')''')
 #c.execute('''INSERT INTO lieu VALUES (16, 'Emirats Arabes Unis', 'Abou Dabi')''')
 #c.execute('''INSERT INTO lieu VALUES (17, 'Suède', 'Stockholm')''')
-#c.execute('''INSERT INTO lieu VALUES (18, 'Suède', 'Liverpool')''')
+#c.execute('''INSERT INTO lieu VALUES (18, 'Suède', 'Malmö')''')
 c.execute('''INSERT INTO lieu VALUES (19, 'Italie', 'Venise')''')
-
 mettez vos villes /villages 
 
-
+#c.execute('''INSERT INTO logement VALUES (20, 1, 'Hotel des champs elysee' )''')
+c.execute('''INSERT INTO logement VALUES (21, 7, 'Le Negresco' )''')
+c.execute('''INSERT INTO logement VALUES (22, 2, 'Hotel Vier Jahreszeiten Kempinski Munich' )''')
+c.execute('''INSERT INTO logement VALUES (23, 8, 'Hotel Adlon Kempinski Berlin' )''')
+c.execute('''INSERT INTO logement VALUES (24, 3, 'JK Place Roma' )''')
+c.execute('''INSERT INTO logement VALUES (25, 19, 'Bauer Palazzo' )''')
+c.execute('''INSERT INTO logement VALUES (26, 4, 'The Ritz London' )''')
+c.execute('''INSERT INTO logement VALUES (27, 9, 'Titanic Hotel Liverpool' )''')
+c.execute('''INSERT INTO logement VALUES (28, 5, 'Royal Mansour Marrakech' )''')
+c.execute('''INSERT INTO logement VALUES (29, 6, 'Palais Tadertino ' )''')
+c.execute('''INSERT INTO logement VALUES (30, 10, 'Grand Hôtel Stockholm' )''')
+c.execute('''INSERT INTO logement VALUES (31, 11, 'IceHotel ' )''')
+c.execute('''INSERT INTO logement VALUES (32, 12, 'InterContinental Ljubljana' )''')
+c.execute('''INSERT INTO logement VALUES (33, 13, 'Barbara Piran Beach Hotel' )''')
+c.execute('''INSERT INTO logement VALUES (34, 14, 'Hotel Sacher Wien' )''')
+c.execute('''INSERT INTO logement VALUES (35, 15, 'JW Marriott Marquis Hotel Dubai' )''')
+c.execute('''INSERT INTO logement VALUES (36, 16, 'St. Regis Abu Dhabi' )''')
+c.execute('''INSERT INTO logement VALUES (37, 17, 'Grand Hôtel Stockholm' )''')
+c.execute('''INSERT INTO logement VALUES (38, 18, 'Hotel Garden' )''')
 
 continuer = True
 
