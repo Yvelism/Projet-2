@@ -77,11 +77,13 @@ c.execute("""
 #c.execute('''INSERT INTO lieu VALUES (11, 'Suède', 'Kiruna')''')
 #c.execute('''INSERT INTO lieu VALUES (12, 'Slovenie', 'Ljublijana')''')
 #c.execute('''INSERT INTO lieu VALUES (13, 'Slovenie', 'Piran')''')
-#c.execute('''INSERT INTO lieu VALUES (14, 'Autriche', 'Flanchai')''')
+#c.execute('''INSERT INTO lieu VALUES (14, 'Autriche', 'Vienne')''')
 #c.execute('''INSERT INTO lieu VALUES (15, 'Emirats Arabes Unis', 'Dubai')''')
 #c.execute('''INSERT INTO lieu VALUES (16, 'Emirats Arabes Unis', 'Abou Dabi')''')
 #c.execute('''INSERT INTO lieu VALUES (17, 'Suède', 'Stockholm')''')
 #c.execute('''INSERT INTO lieu VALUES (18, 'Suède', 'Liverpool')''')
+c.execute('''INSERT INTO lieu VALUES (19, 'Italie', 'Venise')''')
+
 mettez vos villes /villages 
 
 
