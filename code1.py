@@ -139,7 +139,7 @@ while continuer :
         print(l)
         ville= input("Quelle ville choisissez-vous?")
         cville=c.executescript("SELECT id_ville FROM lieu WHERE ville LIKE '"+ville+"'")
-        p = "SELECT * FROM logement WHERE id_ville =" +cville+'"'
+        p = "SELECT * FROM logement WHERE id_ville = 'cville'"
         c.executescript(p)
         print("Voici la liste des Hotels disponibles à", ville)
 
