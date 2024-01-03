@@ -103,6 +103,92 @@ c.execute("""
 #c.execute('''INSERT INTO logement VALUES (37, 17, 'Grand Hôtel Stockholm' )''')
 #c.execute('''INSERT INTO logement VALUES (38, 18, 'Hotel Garden' )''')
 
+# Paris, France
+c.execute('''INSERT INTO excursions VALUES (1, "Tour Eiffel", 1)''')
+c.execute('''INSERT INTO excursions VALUES (2, "Musée du Louvre", 1)''')
+c.execute('''INSERT INTO excursions VALUES (3, "Croisière sur la Seine", 1)''')
+
+# Nice, France
+c.execute('''INSERT INTO excursions VALUES (4, "Pronemade des Anglais", 7)''')
+c.execute('''INSERT INTO excursions VALUES (5, "Vieux Nice", 7)''')
+c.execute('''INSERT INTO excursions VALUES (6, "Musée d'art moderne et d'art contemporain ", 7)''')
+c.execute('''INSERT INTO excursions VALUES (7, "Parc de la Colline du Château ", 7)''')
+
+# Munich, Allemagne
+c.execute('''INSERT INTO excursions VALUES (8, "Marienplatz ", 2)''')
+c.execute('''INSERT INTO excursions VALUES (9, "Hofbräuhaus", 2)''')
+c.execute('''INSERT INTO excursions VALUES (10, "Deutsches Museum", 2)''')
+
+# Berlin, Allemagne
+c.execute('''INSERT INTO excursions VALUES (11, "Mur de Berlin et East Side Gallery", 8)''')
+c.execute('''INSERT INTO excursions VALUES (12, "Porte de Brandebourg", 8)''')
+c.execute('''INSERT INTO excursions VALUES (13, "Mémorial de l'Holocauste", 8)''')
+
+# Rome, Italie
+c.execute('''INSERT INTO excursions VALUES (14, "Colisée", 3)''')
+c.execute('''INSERT INTO excursions VALUES (15, "Basilique Saint-Pierre et la Cité du Vatican", 3)''')
+c.execute('''INSERT INTO excursions VALUES (16, "Fontaine de Trevi", 3)''')
+
+# Venise, Italie
+c.execute('''INSERT INTO excursions VALUES (17, "Place Saint-Marc", 17)''')
+c.execute('''INSERT INTO excursions VALUES (18, "Basilique Saint-Marc", 17)''')
+c.execute('''INSERT INTO excursions VALUES (19, "Balade en gondole", 17)''')
+
+# Londres, Angleterre
+c.execute('''INSERT INTO excursions VALUES (20, "", 4)''')
+c.execute('''INSERT INTO excursions VALUES (21, "", 4)''')
+c.execute('''INSERT INTO excursions VALUES (22, "", 4)''')
+
+# Liverpool, Angleterre
+c.execute('''INSERT INTO excursions VALUES (23, "Albert Dock", 9)''')
+c.execute('''INSERT INTO excursions VALUES (24, "The Beatles Story", 9)''')
+c.execute('''INSERT INTO excursions VALUES (25, "Cathédrale métropolitaine de Liverpool", 9)''')
+
+# Marrakech, Maroc
+c.execute('''INSERT INTO excursions VALUES (25, "Place Jemaa el-Fna", 6)''')
+c.execute('''INSERT INTO excursions VALUES (26, "Médina de Marrakech", 6)''')
+c.execute('''INSERT INTO excursions VALUES (27, "Jardin Majorelle", 6)''')
+
+# Igoudman, Maroc
+c.execute('''INSERT INTO excursions VALUES (28, "Exploration des dunes de sable", 5)''')
+c.execute('''INSERT INTO excursions VALUES (29, "Observation des étoiles dans le désert", 5)''')
+c.execute('''INSERT INTO excursions VALUES (30, "Rencontre avec les habitants nomades", 5)''')
+
+# Stochkolm, Suède
+c.execute('''INSERT INTO excursions VALUES (31, "Gamla Stan", 10)''')
+c.execute('''INSERT INTO excursions VALUES (32, "Musée Vasa", 10)''')
+c.execute('''INSERT INTO excursions VALUES (33, "Palais Royal de Stockholm", 10)''')
+
+# Kiruna, Suède
+c.execute('''INSERT INTO excursions VALUES (34, "Observation des aurores boréales", 11)''')
+c.execute('''INSERT INTO excursions VALUES (35, "Visite de la mine de fer de Kiruna", 11)''')
+c.execute('''INSERT INTO excursions VALUES (36, "Randonnée autour du lac Luossajärvi", 11)''')
+
+# Ljubljana, Slovenie
+c.execute('''INSERT INTO excursions VALUES (37, "Château de Ljubljana", 12)''')
+c.execute('''INSERT INTO excursions VALUES (38, "Marché central de Ljubljana", 12)''')
+c.execute('''INSERT INTO excursions VALUES (39, "Balade le long de la rivière Ljubljanica", 12)''')
+
+# Piran, Slovenie
+c.execute('''INSERT INTO excursions VALUES (40, "Vieille ville de Piran", 13)''')
+c.execute('''INSERT INTO excursions VALUES (41, "Muraille de Piran", 13)''')
+c.execute('''INSERT INTO excursions VALUES (42, "Promenade le long de la côte", 13)''')
+
+# Vienne, Autriche
+c.execute('''INSERT INTO excursions VALUES (43, "Palais de Schönbrunn", 14)''')
+c.execute('''INSERT INTO excursions VALUES (44, "Cathédrale Saint-Étienne", 14)''')
+c.execute('''INSERT INTO excursions VALUES (45, "Musée d'Histoire de l'Art", 14)''')
+
+# Dubai, Emirats Arab unis
+c.execute('''INSERT INTO excursions VALUES (46, "Souk de l'or", 15)''')
+c.execute('''INSERT INTO excursions VALUES (47, "Ski Dubai à Mall of the Emirates", 15)''')
+c.execute('''INSERT INTO excursions VALUES (48, "Dubai Opera", 15)''')
+
+# Abu dabi, Emirats Arab unis
+c.execute('''INSERT INTO excursions VALUES (49, "Corniche d'Abou Dabi", 16)''')
+c.execute('''INSERT INTO excursions VALUES (50, "Qasr Al Watan", 16)''')
+c.execute('''INSERT INTO excursions VALUES (51, "Mangrove National Park", 16)''')
+
 continuer = True
 
 while continuer :
