@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Annuaire</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<header>
+<h2>Annuaire</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="{{ url_for('ajouter') }}">
+      <input type="submit" value="Ajouter un contact" />
+   </form>
+    <form action="{{ url_for('recherche') }}">
+      <input type="submit" value="Rechercher un contact" />
+   </form>
+    <form action="{{ url_for('supprimer') }}">
+      <input type="submit" value="Supprimer un contact" />
+   </form>
+    <form action="{{ url_for('annuaire') }}">
+      <input type="submit" value="Annuaire" />
+    </form>
+    <form action="{{ url_for('tutoriel') }}">
+      <input type="submit" value="Comment utiliser?" />
+    </form>
+  </nav>
+<article>
+  <br>
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Recherche...">
+  <div style="height: 500px; overflow: auto;">
+    <table>
+      <thead>
+          <th onclick="sortTable(0)">Nom</th>
+          <th onclick="sortTable(1)">Prénom</th>
+          <th>Téléphone</th>
+        </thead>
+        <tbody id="myTable">
+          {% for row in liste %}    
+                 <tr>
+                     <td>{{row[1]}}</td>
+                     <td>{{row[2]}}</td>
+                     <td>{{row[0]}}</td>
+                 </tr>
+             {% endfor %}
+         </tbody>
+      </table>
+    </div>
+</article>
+</section>
+<script>
+  function myFunction() {
+    // déclaration des variables
+    var input, filter, table, tr, td, i, occurrence;
+
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    
+    for (i = 0; i < tr.length; i++) {
+        occurrence = false; 
+        td = tr[i].getElementsByTagName("td");
+        for(var j=0; j< td.length; j++){                
+            currentTd = td[j];
+            if (currentTd ) {
+                if (currentTd.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                  occurrence = true;
+              } 
+          }
+      }
+      if(!occurrence){
+          tr[i].style.display = "none";
+      } 
+  }
+}
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 0; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+  </script>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Comment utiliser ?</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<header>
+<h2>Comment utiliser ?</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="{{ url_for('ajouter') }}">
+      <input type="submit" value="Ajouter un contact" />
+   </form>
+    <form action="{{ url_for('recherche') }}">
+      <input type="submit" value="Rechercher un contact" />
+   </form>
+    <form action="{{ url_for('supprimer') }}">
+      <input type="submit" value="Supprimer un contact" />
+   </form>
+    <form action="{{ url_for('annuaire') }}">
+      <input type="submit" value="Annuaire" />
+    </form>
+    <form action="{{ url_for('tutoriel') }}">
+      <input type="submit" value="Comment utiliser?" />
+    </form>
+  </nav>
+<article>
+  <p>Bienvenue à cet annuaire téléphonique ! Ce tutoriel expliquera toutes les fonctions qui sont disponibles sur ce site.</p>
+  <p>Commençons par l'ajout d'un contact. En cliquant sur le bouton dans le navigateur de pages, vous verrez un formulaire qu'il faut remplir avec vos informations. Notez bien que le numéro de téléphone doit mesurer 10 chiffres de long et ne peut pas contenir des lettres. Cliquez sur "Envoyer" et allez vérifier sur l'annuaire.</p>
+  <p>Les programmes rechercher et supprimer fonctionnent de la même manière.</p>
+  <p>L'annuaire affiche la liste des utilisateurs inscrit dans le site. Il est possible de rechercher directement le nom, prénom ou téléphone d'une personne.</p>
+  <p>En appuyant sur le titre de la colonne "Nom" ou "Prénom", le tableau sera trié par ordre alphabétique. Pour les remettre en ordre d'ajout chronologique, reappuyez sur le titre de la colonne.</p>
+  <p>Merci d'utiliser cet Annuaire téléphonique !</p>
+</article>
+</section>
+</html>

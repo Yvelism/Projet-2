@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Annuaire téléphonique</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<header>
+<h2>Repertoire téléphonique</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="{{ url_for('ajouter') }}">
+      <input type="submit" value="Ajouter un contact" />
+   </form>
+    <form action="{{ url_for('recherche') }}">
+      <input type="submit" value="Rechercher un contact" />
+   </form>
+    <form action="{{ url_for('supprimer') }}">
+      <input type="submit" value="Supprimer un contact" />
+   </form>
+    <form action="{{ url_for('annuaire') }}">
+      <input type="submit" value="Annuaire" />
+    </form>
+    <form action="{{ url_for('tutoriel') }}">
+      <input type="submit" value="Comment utiliser?" />
+    </form>
+  </nav>
+<article>
+</article>
+</section>
+<body>
+  <div class="callout">
+    <div class="callout-header">Cookies</div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+    <div class="callout-container">
+      <p>Ce site utilise des cookies pour améliorer votre expérience.</p>
+      <p><a href="https://www.securiteinfo.com/conseils/cookies.shtml" target="_blank">En savoir plus</a></p> 
+      <p>En cliquant sur la croix vous acceptez de perdre toutes vos données personnelles.</p>
+    </div>
+  </div>
+</body>
+
+<h1>Vidéo publicitaire</h1>
+<div class="centere">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/jRUNq7ji-68" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</html>

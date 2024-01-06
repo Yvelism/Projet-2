@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Rechercher un contact</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<header>
+<h2>Rechercher un contact</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="{{ url_for('ajouter') }}">
+      <input type="submit" value="Ajouter un contact" />
+   </form>
+    <form action="{{ url_for('recherche') }}">
+      <input type="submit" value="Rechercher un contact" />
+   </form>
+    <form action="{{ url_for('supprimer') }}">
+      <input type="submit" value="Supprimer un contact" />
+   </form>
+    <form action="{{ url_for('annuaire') }}">
+      <input type="submit" value="Annuaire" />
+    </form>
+    <form action="{{ url_for('tutoriel') }}">
+      <input type="submit" value="Comment utiliser?" />
+    </form>
+  </nav>
+<article>
+  {% if liste == [] %}
+  <a >"Le numero n'est pas dans l'annuaire"</a>
+  {%else %}
+  {% for row in liste %}
+  <p>Le numéro de {{row[2]}} {{row[1]}} est le {{row[0]}}.</p>
+  {% endfor %}
+  {%endif%}
+  <a href="{{ url_for('ajouter') }}"><button class="btn">Retour</button></a>
+</article>
+</section>
+</html>

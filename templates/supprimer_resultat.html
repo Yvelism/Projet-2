@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Contact supprimé</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<header>
+<h2>Contact supprimé</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="{{ url_for('ajouter') }}">
+      <input type="submit" value="Ajouter un contact" />
+   </form>
+    <form action="{{ url_for('recherche') }}">
+      <input type="submit" value="Rechercher un contact" />
+   </form>
+    <form action="{{ url_for('supprimer') }}">
+      <input type="submit" value="Supprimer un contact" />
+   </form>
+    <form action="{{ url_for('annuaire') }}">
+      <input type="submit" value="Annuaire" />
+    </form>
+    <form action="{{ url_for('tutoriel') }}">
+      <input type="submit" value="Comment utiliser?" />
+    </form>
+  </nav>
+<article>
+  <p>Bonjour {{prenom}} {{nom}}, j'espère que vous allez bien. Votre numéro a été supprimé.</p>
+  <a href="{{ url_for('ajouter') }}"><button class="btn">Retour</button></a>
+</article>
+</section>
+</html>
