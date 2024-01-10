@@ -302,7 +302,7 @@ def compte_ajoute():
     creer_compte(nb_adultes,nb_enfants, nom, prenom) # crée une rangée dans la table SQL avec ces informations
     return render_template("compte_ajoute.html", nom, prenom, nb_enfants, nb_adultes)
 
-@app.route('/affichedestinations',methods=['POST']) # formulaire pour ajouter un compte client
+@app.route('/affichedestinations')
 def affichedestinations():
     listedestination()
     return render_template("affichedestinations.html")
