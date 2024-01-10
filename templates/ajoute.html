@@ -2,19 +2,19 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Creer un compte client</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
+    <title>Le compte a été ajouter avec succcès</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css2.css')}}">
 </head>
 <header>
-  <h2>Creer un compte client</h2>
+  <h2>Le compte a été ajouter avec succcès</h2>
 </header>
 
 <section>
     <nav>
-        <form action="{{ url_for('index') }}">
+        <form action="{{ url_for('creer') }}">
           <input type="submit" value="Créer un compte client" />
        </form>
-       <form action="{{ url_for('static') }}">
+       <form action="{{ url_for('destination') }}">
         <input type="submit" value="consulter les destinations " />
     </form>
         <form action="{{ url_for('reserver') }}">
@@ -35,26 +35,13 @@
         <form action="{{ url_for('consulterExcursion') }}">
             <input type="submit" value="Consulter les exursions à votre nom" />
         </form>
-        <form action="{{ url_for('supprimerCompte') }}">
+        <form action="{{ url_for('supprimerCompte ') }}">
             <input type="submit" value="Supprimer votre compte client" />
         </form>
     </nav>
-      <article>
-  <br>
-  <form action="http://localhost:5000/compte_ajoute" method="post">
-    <label for="nom">Nom</label>
-    <input type="text" name="nom" id="nom" placeholder="Entrez votre nom..." required="required"/>
 
-    <label for="pré">Prénom</label>
-    <input type="text" name="prenom" id="pré" placeholder="Entrez votre prénom..." required="required"/>
-
-    <label for="nb_adultes">Nombre d'enfants :</label>
-    <input type="number" id="nb" name="nb" placeholder="Pour..." title="Le nombre d'enfants ne doit pas etre inferieur a 0." required="required" min="0">
-    
-    <label for="nb_adultes">Nombre d'adultes :</label>
-    <input type="number" id="nb" name="nb" placeholder="Pour..." title="Le nombre d'adultes ne doit pas etre inferieur a 0." required="required" min="0">
-    
-    <input type="submit" value="Envoyer" />
-</form>
-      </article>
-</section>
+<article>
+    <p>Bonjour, le compte au nom de {{prenom}} {{nom}} que vous avez creer, à bien été ajouté dans la base de donnée.</p>
+    <a href="{{ url_for('creer') }}"> <button class="btn">Retour</button></a>
+</article>
+  </section>

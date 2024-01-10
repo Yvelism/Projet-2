@@ -1,23 +1,15 @@
 import sqlite3
 
 #Connexion
-connexion = sqlite3.connect('mybase.db')
+connexion = sqlite3.connect('monagence.db')
 
 #Récupération d'un curseur
 c = connexion.cursor()
 
 # ---- début des instructions SQL
-
 #Création des tables
-c.execute("""
-    CREATE TABLE IF NOT EXISTS client(
-    id_client INT,
-    prenom TEXT,
-    nom TEXT,
-    nb_enfant INT,
-    nb_adulte INT,
-    PRIMARY KEY(id_client));
-    """)
+
+c.execute(""" CREATE TABLE IF NOT EXISTS client(id_client INT,prenom TEXT,nom TEXT,nb_enfant INT,nb_adulte INT,PRIMARY KEY(id_client));""")
 
 c.execute("""
     CREATE TABLE IF NOT EXISTS logement(
@@ -56,7 +48,7 @@ c.execute("""
 c.execute("""
     CREATE TABLE IF NOT EXISTS commande(
     id_client INT,
-    id_ville INT
+    id_ville INT,
     id_logement INT,
     date DATE,
     duree INT,
@@ -73,13 +65,13 @@ c.execute("""
 #c.execute('''INSERT INTO lieu VALUES (7, 'France', 'Nice')''')
 #c.execute('''INSERT INTO lieu VALUES (8, 'Allemagne', 'Berlin')''')
 #c.execute('''INSERT INTO lieu VALUES (9, 'Angleterre', 'Liverpool')''')
-#c.execute('''INSERT INTO lieu VALUES (10, 'Suède', 'Stockholm')''')#
+#c.execute('''INSERT INTO lieu VALUES (10, 'Suède', 'Stockholm')''')
 #c.execute('''INSERT INTO lieu VALUES (11, 'Suède', 'Kiruna')''')
-#c.execute('''INSERT INTO lieu VALUES (12, 'Slovenie', 'Ljublijana')''')
+#c.execute('''INSERT INTO lieu VALUES (12, 'Slovenie', 'Ljubljana')''')
 #c.execute('''INSERT INTO lieu VALUES (13, 'Slovenie', 'Piran')''')
 #c.execute('''INSERT INTO lieu VALUES (14, 'Autriche', 'Vienne')''')
 #c.execute('''INSERT INTO lieu VALUES (15, 'Emirats Arabes Unis', 'Dubai')''')
-#c.execute('''INSERT INTO lieu VALUES (16, 'Emirats Arabes Unis', 'Abou Dabi')''')
+#c.execute('''INSERT INTO lieu VALUES (16, 'Emirats Arabes Unis', 'Abu Dabi')''')
 #c.execute('''INSERT INTO lieu VALUES (17, 'Italie', 'Venise')''')
 
 
@@ -91,8 +83,8 @@ c.execute("""
 #c.execute('''INSERT INTO logement VALUES (25, 19, 'Bauer Palazzo' )''')
 #c.execute('''INSERT INTO logement VALUES (26, 4, 'The Ritz London' )''')
 #c.execute('''INSERT INTO logement VALUES (27, 9, 'Titanic Hotel Liverpool' )''')
-#c.execute('''INSERT INTO logement VALUES (28, 5, 'Royal Mansour Marrakech' )''')
-#c.execute('''INSERT INTO logement VALUES (29, 6, 'Palais Tadertino ' )''')
+#c.execute('''INSERT INTO logement VALUES (28, 6, 'Royal Mansour Marrakech' )''')
+#c.execute('''INSERT INTO logement VALUES (29, 5, 'Palais Tadertino ' )''')
 #c.execute('''INSERT INTO logement VALUES (30, 10, 'Grand Hôtel Stockholm' )''')
 #c.execute('''INSERT INTO logement VALUES (31, 11, 'IceHotel ' )''')
 #c.execute('''INSERT INTO logement VALUES (32, 12, 'InterContinental Ljubljana' )''')
@@ -114,7 +106,7 @@ c.execute("""
 #c.execute('''INSERT INTO excursions VALUES (6, "Musée d'art moderne et d'art contemporain ", 7)''')
 #c.execute('''INSERT INTO excursions VALUES (7, "Parc de la Colline du Château ", 7)''')
 
-# Munich, Allemagne
+#Munich, Allemagne
 #c.execute('''INSERT INTO excursions VALUES (8, "Marienplatz ", 2)''')
 #c.execute('''INSERT INTO excursions VALUES (9, "Hofbräuhaus", 2)''')
 #c.execute('''INSERT INTO excursions VALUES (10, "Deutsches Museum", 2)''')
@@ -128,6 +120,7 @@ c.execute("""
 #c.execute('''INSERT INTO excursions VALUES (14, "Colisée", 3)''')
 #c.execute('''INSERT INTO excursions VALUES (15, "Basilique Saint-Pierre et la Cité du Vatican", 3)''')
 #c.execute('''INSERT INTO excursions VALUES (16, "Fontaine de Trevi", 3)''')
+
 
 # Venise, Italie
 #c.execute('''INSERT INTO excursions VALUES (17, "Place Saint-Marc", 17)''')
@@ -181,95 +174,73 @@ c.execute("""
 
 # Dubai, Emirats Arab unis
 #c.execute('''INSERT INTO excursions VALUES (46, "Souk de l'or", 15)''')
-#c.execute('''INSERT INTO excursions VALUES (47, "Ski Dubai à Mall of the Emirates", 15)''')
+#c.execute('''INSERT INTO excursions VALUES (47, "Ski Dubai Mall of the Emirates", 15)''')
 #c.execute('''INSERT INTO excursions VALUES (48, "Dubai Opera", 15)''')
 
 # Abu dabi, Emirats Arab unis
-#c.execute('''INSERT INTO excursions VALUES (49, "Corniche d'Abou Dabi", 16)''')
+#c.execute('''INSERT INTO excursions VALUES (49, "Corniche d'Abu Dabi", 16)''')
 #c.execute('''INSERT INTO excursions VALUES (50, "Qasr Al Watan", 16)''')
 #c.execute('''INSERT INTO excursions VALUES (51, "Mangrove National Park", 16)''')
 
-continuer = True
 
-while continuer :
-    print("Bonjour, Que voulez-vous faire ?")
-    print("1. Créer un compte client")
-    print("2. Consulter la liste des destinations et des hôtels")
-    print("3. Supprimer une selection")
-    print("4. Choisir une excursion")
-    print("5. Chosir un voyage")
-    print("6. Consulter les commandes")
-    print("7. Quitter")
-    choix = int(input("Votre choix :"))
+def repertoire_client():
+    # Insertion si le compte n'existe pas déjà
+    c.execute(""" CREATE TABLE IF NOT EXISTS client(id_client INT,prenom TEXT,nom TEXT,nb_enfant INT,nb_adulte INT,PRIMARY KEY(id_client));""")        
+    print("Nouvel utilisateur ajouté avec succès!")
+        
+def creer_compte(nom,prenom,nb_enfants,nb_adultes):
+    newclient = (nom,prenom, nb_enfants,nb_adultes)
+    # Vérification si l'utilisateur existe déjà
+    try:
+        c.execute("SELECT * FROM client WHERE (nom, prenom, nb_enfant, nb_adulte)=(?,?,?,?)", newclient)
+    except sqlite3.IntegrityError:
+        print("Le compte (", nom, ") que vous voulez ajouter est deja dans la base de données")
 
-    if choix ==1:
-        nom = input('Nom ? ')
-        prenom = input('Prénom ? ')
-        nb_enfants = input('Pour combien denfants ? ')
-        nb_adultes = input('Pour combien dadultes ? ')
-        newclient = (nom,prenom, nb_enfants,nb_adultes)
-        # Vérification si l'utilisateur existe déjà
-        c.execute("SELECT * FROM client WHERE (nom, prenom, nb_enfant, nb_adulte)=(?, ?,?,?)", newclient)
-        existe_deja = c.fetchone()
+'''def destination():
+    c.execute("SELECT * FROM lieu")
+    destinations = c.fetchall()
+    for destination in destinations:
+        print(f"ID: {destination[0]}, Pays: {destination[1]}, Ville: {destination[2]}")
 
-        if not existe_deja:
-            # Insertion si le compte n'existe pas déjà
-            c.execute("INSERT INTO client (nom, prenom, nb_enfant, nb_adulte) VALUES (?, ?,?,?)", newclient)
-            print("Nouvel utilisateur ajouté avec succès!")
-        else:
-            print("L'utilisateur existe déjà.")
-
-    elif choix == 2 :
-        c.executescript("SELECT * FROM lieu")
-        l=c.fetchall
-        print(l)
-        ville= input("Quelle ville choisissez-vous?")
-        cville=c.executescript("SELECT id_ville FROM lieu WHERE ville LIKE '"+ville+"'")
-        p = "SELECT * FROM logement WHERE id_ville = 'cville'"
-        c.executescript(p)
-        print("Voici la liste des Hotels disponibles à", ville)
-
-    elif choix == 3 :
-        client = input('Quel est votre identifiant client ? ')
-        ville = input("Quelle est la destination du voyage que vous souhaitez supprimer ?")
-        commandesupp = input('Quelle est la date du voyage que vous souhaitez supprimer ? ')
-        p = "DELETE FROM commande WHERE id_client = '" + client + "' AND date = '"+ commandesupp + "' "
-        c.executescript(p)
-        print("Vous avez supprimé votre voyage à ", ville, "de la base de données")
-
-    elif choix == 4 :
-        ville= input("Dans quelle ville ?")
-        cville=c.executescript("SELECT id_ville FROM lieu WHERE ville LIKE '"+ville+"'")
-        c.execute("SELECT * FROM excursions WHERE id_ville="+cville+'"') 
-        res= c.fetchall()
-        print("Vous consultez les excursions disponibles à", ville,":", res)
-
-    elif choix == 5:
-            id_client = input('Votre identifiant client ? ')
-            ville1 = input('Ville ? ')
-            c.executescript("SELECT id_ville FROM lieu WHERE ville LIKE ' "+ ville1 +"'")
-            ville2= input('Code de cette ville ?')
-            logement1= input('Quel logement ?')
-            c.executescript("SELECT id_logement FROM logement WHERE nom LIKE ' "+ logement1 +"'")
-            logement2= input("Code du logement?")
-            date = input('A quelle date ?(AAAA-MM-JJ) ')
-            duree = input('Pour combien de temps ?')
-            p = "INSERT INTO commande VALUES ('" + id_client + "','" + ville2 + "','" +"logement" +"','" + date + "','" + duree + "')"
-            c.executescript(p)
-            print("Vous avez ajouté un voyage à", ville1,"à votre commande")
-
-    elif choix == 6:
-        c.execute("SELECT * FROM commande")
-        tab = c.fetchall()
-        print(tab)
-
-
-    elif choix == 7:
-        print("Merci d'avoir utilisé notre agence de voyage")
-        continuer = False
-
-    else:
-        print("Votre choix doit être compris entre 1 et 7")
+    ville= input("Quelle ville choisissez-vous?")
+    for destination in destinations:
+        if destination[2]==ville:
+            idv=destination[0]
+    c.execute("SELECT * FROM logement")
+    logement=c.fetchall()
+    l=[] 
+    print("Voici la liste des Hôtels disponibles à", ville)
+    for logement in logement :
+        if logement[1]==idv :
+            print(f"IDlog: {logement[0]}, IDville: {logement[1]}, Nom: {logement[2]}")  
+                
+def supprimer(ville,client):
+    p = "DELETE FROM commande WHERE id_client = '" + client + "' AND date = '"+ commandesupp + "' "
+    c.executescript(p)
+    print("Vous avez supprimé votre voyage à ", ville, "de la base de données")
+def excursion(lieu,ville):
+    lieu= input("Dans quelle ville ?")
+    ville= input("ID de cette ville ?")
+    c.execute("SELECT * FROM excursions WHERE id_ville=?",(ville)) 
+    res= c.fetchall()
+    print("Vous consultez les excursions disponibles à ",lieu, " :")
+    for res in res:
+        print(f"IDactivité: {res[0]}, Nom: {res[1]}, IDville: {res[2]}")
+def ajout_voyage(id_client,ville,logement,date,duree):
+    id_client = input('Votre identifiant client ? ')
+    ville = input('Id de la Ville ? ')
+    logement= input('ID du logement ?')
+    date = input('A quelle date ?(AAAA-MM-JJ) ')
+    duree = input('Pour combien de temps ?')
+    p = "INSERT INTO commande VALUES ('" + id_client + "','" + ville + "','" +logement +"','" + date + "','" + duree + "')"
+    c.executescript(p)
+    print("Vous avez ajouté un voyage à votre commande")
+def commande():
+    c.execute("SELECT * FROM commande")
+    tab = c.fetchall()
+    for ligne in tab:
+        print(f"IDclient:{ligne[0]}, IDville:{ligne[1]}, IDlogement:{ligne[2]}, Date:{ligne[3]}, Duree:{ligne[4]}")
+    '''        
 
 
 # ---- fin des instructions SQL
@@ -280,3 +251,35 @@ connexion.commit()
 
 #Déconnexion
 connexion.close()
+
+
+##PARTIE FLASK 
+from flask import Flask, render_template # importe flask et ses fonctions
+from flask import request
+
+app = Flask(__name__) #Création d'une instance de l'application Flask,
+#avec __name__ utilisé pour définir le point de démarrage de l'application
+
+@app.route('/')# définit la première page que l'utilisateur voit
+def index():
+    return render_template('index.html') # ouvre la page html 'interface'
+
+if __name__ == '__main__': #vérifie si le script est exécuté directement 
+    #(plutôt que d'être importé en tant que module).
+    app.run(debug=True) # il lance l'application Flask en mode débogagennb 
+
+@app.route('/creer_compte') # formulaire pour ajouter un compte client
+def creer_compte():
+    return render_template("creer_compte.html")
+    
+@app.route('/compte_ajoute', methods=['POST'])
+def compte_ajoute():
+    repertoire_client()
+    nom = request.form.get('nom')
+    prenom = request.form.get('prenom')
+    nb_enfants = request.form.get('nb_enfants')
+    nb_adultes = request.form.get('nb_adultes')
+    # Insére le compte client dans la base de données SQLite
+    creer_compte(nb_adultes,nb_enfants, nom, prenom) # crée une rangée dans la table SQL avec ces informations
+    return render_template("compte_ajoute.html", nom, prenom, nb_adultes)
+app.run(debug=True)

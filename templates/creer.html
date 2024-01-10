@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <title>Creer un compte client</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
-</head>
 <header>
   <h2>Creer un compte client</h2>
 </header>
 
 <section>
     <nav>
-        <form action="{{ url_for('index') }}">
+        <form action="{{ url_for('creer') }}">
           <input type="submit" value="Créer un compte client" />
        </form>
-       <form action="{{ url_for('static') }}">
+       <form action="{{ url_for('destination') }}">
         <input type="submit" value="consulter les destinations " />
     </form>
         <form action="{{ url_for('reserver') }}">
@@ -35,11 +34,12 @@
         <form action="{{ url_for('consulterExcursion') }}">
             <input type="submit" value="Consulter les exursions à votre nom" />
         </form>
-        <form action="{{ url_for('supprimerCompte') }}">
+        <form action="{{ url_for('supprimerCompte ') }}">
             <input type="submit" value="Supprimer votre compte client" />
         </form>
     </nav>
-      <article>
+
+ <article>
   <br>
   <form action="http://localhost:5000/compte_ajoute" method="post">
     <label for="nom">Nom</label>
@@ -56,5 +56,5 @@
     
     <input type="submit" value="Envoyer" />
 </form>
-      </article>
-</section>
+</article>
+  </section>
