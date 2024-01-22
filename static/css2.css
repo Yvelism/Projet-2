@@ -21,6 +21,8 @@ nav {
     background-color: #229fcd;
     padding: 10px;
     border-bottom: 1px solid #4559f6;
+    float: left;
+    width: 310px;
 }
 
 nav a {
@@ -37,9 +39,12 @@ nav a:hover {
 
 article {
     background-color: #1e17a7;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
+    padding: 0px 20px;
+    border-radius: 0px;
+    margin-top: 0px;
+    float: left;
+    width: 70%;
+    height: auto;
 }
 
 article h2 {
@@ -64,8 +69,34 @@ form input[type="submit"] {
     background-color: #4c51af;
     color: #ffffff;
     cursor: pointer;
+    width: 300px;
 }
 
 form input[type="submit"]:hover {
     background-color: #456ba0;
 }
+.tableau-style{
+    border-collapse : collapse;
+    min-width : 400px;
+    width: auto;
+    box-shadow: 0 5px 50px rgba(0,0,0,0.5);
+    cursor: pointer;
+    margin : 100px auto;
+    border : 2px solid midnightblue;
+}
+
+thead tr{
+    background-color: midnightblue;
+    color : #fff;
+    text-align: left;
+}
+
+th, td{
+padding : 15px 20px
+}
+
+tbody tr, td, th{
+    border : 1px solid #4c51af
+}
+tbody tr:nth-child(even){
+background-color: #456ba0;}
