@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter un voyage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
+</head>
+<header>
+  <h2>Ajouter un voyage</h2>
+</header>
+
+<section>
+    <nav>
+        <form action="{{ url_for('creer_compte') }}">
+            <input type="submit" value="Créer un compte client" />
+         </form>
+         <form action="{{ url_for('affichedestinations') }}">
+          <input type="submit" value="Consulter les destinations " />
+      </form>
+      <form action="{{ url_for('afficheExcursion') }}">
+        <input type="submit" value="Consulter les excursions " />
+    </form>
+          <form action="{{ url_for('ajoutvoyage') }}">
+              <input type="submit" value="Ajouter un voyage " />
+          </form>
+          <form action="{{ url_for('ajoutExcursion') }}">
+            <input type="submit" value="Ajouter une excursion au voyage" />
+        </form>
+        <form action="{{ url_for('consultervoyage') }}">
+            <input type="submit" value="Consulter les voyages à votre nom" />
+        </form>
+        <form action="{{ url_for('consulterExcursion') }}">
+            <input type="submit" value="Consulter les exursions à votre nom" />
+        </form>
+        <form action="{{ url_for('supprimer') }}">
+            <input type="submit" value="Supprimer un voyage" />
+
+        <form action="{{ url_for('supprimerCompte') }}">
+            <input type="submit" value="Supprimer votre compte client" />
+        </form>
+    </nav>
+      <article>
+        <br>
+        <form action="http://localhost:5000/voyage_ajoute" method="post">
+
+        <label for="nom">identifiant client</label>
+      <input type="number" name="id_client" id="id_client" placeholder="Entrez votre identifiant client..." required="required" min = 1 />
+  
+      <label for="pré">identifiant ville</label>
+      <input type="number" name="id_ville" id="id_ville" placeholder="Entrez l'identifiant de la ville..." required="required" min = 1 />
+      
+      <label for="pré">identifiant logement</label>
+      <input type="number" name="id_logement" id="id_logement" placeholder="Entrez l'identifiant du logement..." required="required" min = 20 />
+  
+      <label for="nb_adultes">date</label>
+      <input type="date" id="date" name="date" placeholder="Pour le ..." required="required" min="0"/>
+      
+      <label for="nb_adultes">duree</label>
+      <input type="number" id="duree" name="duree" placeholder="jusqu'au..." required="required" min="0"/>
+      
+      <input type="submit" value="Envoyer" />
+      </article>
+</section>

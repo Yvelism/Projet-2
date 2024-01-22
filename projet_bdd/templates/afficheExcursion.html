@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Liste des excursions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
+</head>
+<header>
+  <h2>Liste des excursions</h2>
+</header>
+
+<section>
+    <nav>
+        <form action="{{ url_for('creer_compte') }}">
+            <input type="submit" value="Créer un compte client" />
+         </form>
+         <form action="{{ url_for('affichedestinations') }}">
+          <input type="submit" value="Consulter les destinations " />
+      </form>
+      <form action="{{ url_for('afficheExcursion') }}">
+        <input type="submit" value="Consulter les excursions " />
+    </form>
+          <form action="{{ url_for('ajoutvoyage') }}">
+              <input type="submit" value="Ajouter un voyage " />
+          </form>
+          <form action="{{ url_for('ajoutExcursion') }}">
+            <input type="submit" value="Ajouter une excursion au voyage" />
+        </form>
+        <form action="{{ url_for('consultervoyage') }}">
+            <input type="submit" value="Consulter les voyages à votre nom" />
+        </form>
+        <form action="{{ url_for('consulterExcursion') }}">
+            <input type="submit" value="Consulter les exursions à votre nom" />
+        </form>
+        <form action="{{ url_for('supprimer') }}">
+            <input type="submit" value="Supprimer un voyage" />
+
+        <form action="{{ url_for('supprimerCompte') }}">
+            <input type="submit" value="Supprimer votre compte client" />
+        </form>
+    </nav>
+      <article>
+    <table class = tableau-style>
+    <thead>
+    <tr>
+        <th>id activite </th>
+        <th>nom activite </th>
+        <th>id ville </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Tour Eiffel</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Louvre</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Croisière sur la Seine</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Pronemade des Anglais</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Vieux Nice</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Musée d'art moderne et d'art contemporain</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Parc de la Colline du Château </td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Marienplatz</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Hofbräuhaus</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Deutsches Museum</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Mur de Berlin et East Side Gallery</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Porte de Brandebourg</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>Mémorial de l'Holocauste</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Colisée</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Basilique Saint-Pierre <br>et la Cité du Vatican</td></br>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Fontaine de Trevi</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>Place Saint-Marc</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>Basilique Saint-Marc</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>Balade en gondole</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>Le British Museum</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>La Tour de Londres</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>Le London Eye</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>Albert Dock</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>The Beatles Story</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>Cathédrale métropolitaine de Liverpool</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td>Place Jemaa el-Fna</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td>Médina de Marrakech</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>28</td>
+            <td>Jardin Majorelle</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td>Exploration des dunes de sable</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td>Observation des étoiles dans le désert</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>31</td>
+            <td>Rencontre avec les habitants nomades</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>32</td>
+            <td>Gamla Stan</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>33</td>
+            <td>Musée Vasa</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>34</td>
+            <td>Palais Royal de Stockholm</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>35</td>
+            <td>Observation des aurores boréales</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>36</td>
+            <td>Visite de la mine de fer de Kiruna</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>37</td>
+            <td>Randonnée autour du lac Luossajärvi</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>38</td>
+            <td>Château de Ljubljana</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>39</td>
+            <td>Marché central de Ljubljana</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>40</td>
+            <td>Balade le long de la rivière Ljubljanica</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>41</td>
+            <td>Vieille ville de Piran</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>42</td>
+            <td>Muraille de Piran</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>43</td>
+            <td>Promenade le long de la côte</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>44</td>
+            <td>Palais de Schönbrunn</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>45</td>
+            <td>Cathédrale Saint-Étienne</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>46</td>
+            <td>Musée d'Histoire de l'Art</td>
+            <td>11</td>
+        </tr>
+
+        <tr>
+            <td>47</td>
+            <td>Souk de l'or</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>48</td>
+            <td>Ski Dubai Mall of the Emirates</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>49</td>
+            <td>Dubai Opera</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>Corniche d'Abu Dabi</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>51</td>
+            <td>Qasr Al Watan</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>52</td>
+            <td>Mangrove National Park</td>
+            <td>16</td>
+        </tr>
+        
+    </tbody>
+
+
+</table>
+</article>
+</section>
