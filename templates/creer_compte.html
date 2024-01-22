@@ -4,19 +4,18 @@
     <meta charset="utf-8">
     <title>Creer un compte client</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
-</head>
 <header>
   <h2>Creer un compte client</h2>
 </header>
 
 <section>
     <nav>
-        <form action="{{ url_for('index') }}">
+        <form action="{{ url_for('creer') }}">
           <input type="submit" value="Créer un compte client" />
-        </form>
-        <form action="{{ url_for('affichedestinations') }}">
+       </form>
+       <form action="{{ url_for('affichedestinations') }}">
         <input type="submit" value="consulter les destinations " />
-        </form>
+    </form>
         <form action="{{ url_for('reserver') }}">
             <input type="submit" value="resever un voyage " />
         </form>
@@ -39,7 +38,8 @@
             <input type="submit" value="Supprimer votre compte client" />
         </form>
     </nav>
-      <article>
+
+ <article>
   <br>
   <form action="http://localhost:5000/compte_ajoute" method="post">
     <label for="nom">Nom</label>
@@ -48,13 +48,13 @@
     <label for="pré">Prénom</label>
     <input type="text" name="prenom" id="pré" placeholder="Entrez votre prénom..." required="required"/>
 
-    <label for="nb_enfants">Nombre d'enfants :</label>
-    <input type="number" id="nb_enfants" name="nb_enfants" placeholder="Pour..." title="Le nombre d'enfants ne doit pas etre inferieur a 0." required="required" value="0" min="0" max="20">
+    <label for="nb_adultes">Nombre d'enfants :</label>
+    <input type="number" id="nb" name="nb" placeholder="Pour..." title="Le nombre d'enfants ne doit pas etre inferieur a 0." required="required" min="0">
     
     <label for="nb_adultes">Nombre d'adultes :</label>
-    <input type="number" id="nb_adultes" name="nb_adultes" placeholder="Pour..." title="Le nombre d'adultes ne doit pas etre inferieur a 0." required="required" value="0" min="0" max="20">
+    <input type="number" id="nb" name="nb" placeholder="Pour..." title="Le nombre d'adultes ne doit pas etre inferieur a 0." required="required" min="0">
     
     <input type="submit" value="Envoyer" />
 </form>
-      </article>
-</section>
+</article>
+  </section>
