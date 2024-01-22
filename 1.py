@@ -307,23 +307,23 @@ def affichedestinations():
     listedestination()
     return render_template("affichedestinations.html")
 
-@app.route('/ajoutvoyage', methods=['POST'])
+@app.route('/ajoutvoyage')
 def ajoutvoyage():
-    id_client = input('Votre identifiant client ? ')
-    ville = input('Id de la Ville ? ')
-    logement= input('ID du logement ?')
-    date = input('A quelle date ?(AAAA-MM-JJ) ')
-    duree = input('Pour combien de temps(en j) ?')
+    id_client = request.form.get('Votre identifiant client ? ')
+    ville = request.form.get('Id de la Ville ? ')
+    logement= request.form.get('ID du logement ?')
+    date = request.form.get('A quelle date ?(AAAA-MM-JJ) ')
+    duree = request.form.get('Pour combien de temps(en j) ?')
     
     # Insére le compte client dans la base de données SQLite
     addvoyage(id_client,ville,logement,date,duree) # crée une rangée dans la table SQL avec ces informations
     return render_template("ajoutvoyage.html", id_client,ville,logement,date,duree)
 
-@app.route('/suppvoyage', methods=['POST'])
+@app.route('/suppvoyage')
 def suppvoyage():
-    client = input('Quel est votre identifiant client ? ')
-    ville = input("Quelle est la destination du voyage que vous souhaitez supprimer ?")
-    commandesupp = input('Quelle est la date du voyage que vous souhaitez supprimer ? ')
+    client = request.form.get('Quel est votre identifiant client ? ')
+    ville = request.form.get("Quelle est la destination du voyage que vous souhaitez supprimer ?")
+    commandesupp = request.form.get('Quelle est la date du voyage que vous souhaitez supprimer ? ')
    
     # Insére le compte client dans la base de données SQLite
     removevoyage(client,ville,commandesupp) # crée une rangée dans la table SQL avec ces informations
