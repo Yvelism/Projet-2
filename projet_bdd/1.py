@@ -285,11 +285,53 @@ def commande():
     connexion.close()
 
 #"7. Ajouter une excursion à votre voyage"
+def ajoutexcursion(id_client,id_excursion,date_excursion):
+    connexion = sqlite3.connect('monagence.db')
+    c = connexion.cursor()
+    
+    c.execute("INSERT INTO choix_activite (id_client, id_activite, date, options) VALUES (?, ?, ?, ?)",
+            (id_client, id_excursion, date_excursion, ))
+    print("Excursion réservée avec succès!")
+    connexion.commit()
+    connexion.close()
 
+
+    
 #"8. Consulter les excursions résérvées à votre nom"
+def consultexcursion(id_client_consultation):
+    connexion = sqlite3.connect('monagence.db')
+    c = connexion.cursor()
+  
+    c.execute("SELECT * FROM choix_activite WHERE id_client=?", (id_client_consultation,))
+    reservations_excursions = c.fetchall()
+    print(f"Réservations d'excursions pour le client {id_client_consultation} :")
+    for reservation in reservations_excursions:
+        print(f"ID Activité: {reservation[1]}, Date: {reservation[2]}")
+    connexion.commit()
+    connexion.close()
+
+
 
 #"9. Supprimer votre compte client"
+def removecompte(id,verif):
+    connexion = sqlite3.connect('monagence.db')
+    c = connexion.cursor()
+  
+    if verif == "Oui":
+        c.execute("DELETE FROM client WHERE id_client =?",(id) )
+        c.execute("DELETE FROM commande WHERE id_client =?",(id) )
+        c.execute("DELETE FROM choix_activite WHERE id_client =?",(id) )
+        print("Compte client supprimé")
+    elif verif == "Non":
+        print("Action annulée")
+    connexion.commit()
+    connexion.close()
 
+
+#10. quitter 
+def quit():
+    ...
+   
 # ---- fin des instructions SQL
 
 #Validation
