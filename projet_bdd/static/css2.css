@@ -1,14 +1,16 @@
-/* styles.css */
-
 body {
-    background-color: #daa644;
-    color: #ffffff;
+    color: #333333; /* Garde le texte en gris foncé pour contraster */
     font-family: 'Arial', sans-serif;
     margin: 0;
+    background-image: url('background-travel.jpg'); 
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
 }
 
 header {
-    background-color: #eead62;
+   
+    font-family: 'Times New Roman', serif;
     padding: 10px;
     text-align: center;
 }
@@ -17,42 +19,83 @@ header h1 {
     color: #ffffff;
 }
 
+/* Styles existants pour 'nav' */
 nav {
-    background-color: #229fcd;
-    padding: 10px;
     border-bottom: 1px solid #4559f6;
-    float: left;
-    width: 310px;
+    text-align: center; /* Centrage du texte */
+    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
+    justify-content: center; /* Centrage horizontal des éléments dans la barre de navigation */
+    align-items: center; /* Centrage vertical des éléments */
+    width: 100%; /* Barre de navigation sur toute la largeur */
 }
 
+/* Styles pour 'nav' */
+nav {
+    background-color: transparent; 
+    padding: 10px;
+    border-bottom: 0px; /* Bleu plus foncé pour la bordure */
+    text-align: center; /* Centrage du texte */
+    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
+    justify-content: center; /* Centrage horizontal des éléments dans la barre de navigation */
+    align-items: center; /* Centrage vertical des éléments */
+    width: 100%; /* Barre de navigation sur toute la largeur */
+}
+
+/* Styles pour les liens dans 'nav' */
 nav a {
     color: #ffffff;
     text-decoration: none;
     padding: 10px;
-    margin-right: 10px;
+    margin: 0 5px; /* Espacement uniforme autour des liens */
 }
 
 nav a:hover {
-    background-color: #4caf50;
+    background-color: #0292c0; /* Bleu clair pour le survol */
     color: #ffffff;
+    border-radius: 5px; /* Arrondir les coins lors du survol */
 }
 
+/* Styles pour la barre de recherche */
+.search-bar {
+    padding: 5px;
+    margin-left: 10px; /* Espacement à gauche de la barre de recherche */
+}
+
+.search-input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #0292c0; /* Bordure bleue pour la barre de recherche */
+}
+
+.search-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #005f73; /* Bleu plus foncé pour le bouton de recherche */
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #004a5e; /* Bleu encore plus foncé pour le survol */
+}
+
+
 article {
-    background-color: #1e17a7;
-    padding: 0px 20px;
-    border-radius: 0px;
-    margin-top: 0px;
-    float: left;
-    width: 70%;
-    height: auto;
+    background-color: #dcf7ff; 
+    font-family: 'Times New Roman', serif;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px auto; /* Top and bottom margin as 10px, left and right as auto to center */
+    width: 60%; /*  width */
+    box-shadow: 0px 0px 10px 0px #aaa; /* Shadow for 3D effect */
 }
 
 article h2 {
-    color: #ffffff;
+    color: #333333;
 }
-
 form label {
-    color: #ffffff;
+    color: #333333;
 }
 
 form input {
@@ -60,43 +103,19 @@ form input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #444444;
-    border-radius: 5px;
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #f5f5f5; /* fond plus clair pour les champs de saisie */
+    color: #333333;
 }
 
 form input[type="submit"] {
-    background-color: #4c51af;
+    font-family: 'Times New Roman', serif;
+    background-color: #20b5b5; /* couleur teal pour le bouton de soumission */
+    margin: auto;
     color: #ffffff;
     cursor: pointer;
-    width: 300px;
+    width: 100%;
 }
 
 form input[type="submit"]:hover {
-    background-color: #456ba0;
+    background-color: #20b2aa; /* couleur teal plus claire au survol */
 }
-.tableau-style{
-    border-collapse : collapse;
-    min-width : 400px;
-    width: auto;
-    box-shadow: 0 5px 50px rgba(0,0,0,0.5);
-    cursor: pointer;
-    margin : 100px auto;
-    border : 2px solid midnightblue;
-}
-
-thead tr{
-    background-color: midnightblue;
-    color : #fff;
-    text-align: left;
-}
-
-th, td{
-padding : 15px 20px
-}
-
-tbody tr, td, th{
-    border : 1px solid #4c51af
-}
-tbody tr:nth-child(even){
-background-color: #456ba0;}
