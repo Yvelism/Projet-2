@@ -186,24 +186,26 @@ c.execute("""
 
 #"1. Créer un compte client"
 def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
+    assert type(nb_enfants)==int
+    assert type(nb_adultes)==int
     connexion = sqlite3.connect('monagence.db')
-    c = connexion.cursor()
-
-    c.execute("SELECT MAX(id_client) FROM client")
+    c = connexion.cursor() # initialiser la connexion
+    #definition d'un id pour les nouveaux clients
+    c.execute("SELECT MAX(id_client) FROM client") 
     
     max_id = c.fetchone()[0]
 
-    if max_id is not None:
+    if max_id is not None:#si il y a deja un id définit 
         new_id = max_id + 1
-    else:
+    else: # si il n'y a pas d'id on lui donne l'id n°1
         new_id = 1
     addedId = 0
     ifExist = 0
 
-    existingClient = (nom,prenom, nb_enfants,nb_adultes)
+    existingClient = (nom,prenom, nb_enfants,nb_adultes) 
     newclient = (new_id, nom,prenom, nb_enfants,nb_adultes)
     c.execute("SELECT id_client FROM client WHERE (nom, prenom, nb_enfant, nb_adulte)=(?, ?,?,?)", existingClient)
-    existe_deja = c.fetchone()
+    existe_deja = c.fetchone()#vérification: le compte cient existe-t-il déjà ?
 
     if not existe_deja:
         c.execute("INSERT INTO client (id_client, nom, prenom, nb_enfant, nb_adulte) VALUES (?,?, ?,?,?)", newclient)
@@ -217,7 +219,7 @@ def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
     return addedId, ifExist
 
 #"2. Consulter la liste des destinations et des hôtels avec leur identifiant"
-def listedestination():
+def listedestination():#affichage des destinations 
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
     
@@ -225,8 +227,6 @@ def listedestination():
     destinations = c.fetchall()
     for destination in destinations:
         print(f"ID: {destination[0]}, Pays: {destination[1]}, Ville: {destination[2]}")
-
-    ville= input("Quelle ville choisissez-vous?")
     for destination in destinations:
         if destination[2]==ville:
             idv=destination[0]
@@ -239,7 +239,27 @@ def listedestination():
                   
     connexion.commit()
     connexion.close()
-                      
+    
+#2bis afficher les hotels d'une certraine destination
+def listehotels(ville):#affichage des hotels 
+    connexion = sqlite3.connect('monagence.db')
+    c = connexion.cursor()
+    c.execute("SELECT * FROM lieu")
+    destinations = c.fetchall()
+    for destination in destinations:
+        if destination[2]==ville:
+            idv=destination[0]
+    c.execute("SELECT * FROM logement")
+    logement=c.fetchall()
+    l=[]
+    for logement in logement :
+        if logement[1]==idv :
+            print(f"IDlog: {logement[0]}, IDville: {logement[1]}, Nom: {logement[2]}")
+                  
+    connexion.commit()
+    connexion.close()
+
+
 #"3. Reserver un voyage"
 def addvoyage(id_client,ville,logement,date,duree):
     connexion = sqlite3.connect('monagence.db')
@@ -409,6 +429,8 @@ def excursionajoute():
 @app.route('/consultervoyage')
 def consultervoyage():
     listedestination()
+    ville=request.form.get('Dans quelle ville ?')
+    listehotels(ville)
     return render_template("consultervoyage.html")
     
 @app.route('/consulterExcursion')
