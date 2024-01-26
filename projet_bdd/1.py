@@ -195,7 +195,7 @@ def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
     
     max_id = c.fetchone()[0]
 
-    if max_id is not None:#si il y a deja un id définit 
+    if max_id is not None: #si il y a deja un id définit 
         new_id = max_id + 1
     else: # si il n'y a pas d'id on lui donne l'id n°1
         new_id = 1
@@ -205,7 +205,7 @@ def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
     existingClient = (nom,prenom, nb_enfants,nb_adultes) 
     newclient = (new_id, nom,prenom, nb_enfants,nb_adultes)
     c.execute("SELECT id_client FROM client WHERE (nom, prenom, nb_enfant, nb_adulte)=(?, ?,?,?)", existingClient)
-    existe_deja = c.fetchone()#vérification: le compte cient existe-t-il déjà ?
+    existe_deja = c.fetchone() #vérification: le compte cient existe-t-il déjà ?
 
     if not existe_deja:
         c.execute("INSERT INTO client (id_client, nom, prenom, nb_enfant, nb_adulte) VALUES (?,?, ?,?,?)", newclient)
@@ -219,7 +219,7 @@ def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
     return addedId, ifExist
 
 #"2. Consulter la liste des destinations et des hôtels avec leur identifiant"
-def listedestination():#affichage des destinations 
+def listedestination(): #affichage des destinations 
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
     
@@ -240,7 +240,7 @@ def listedestination():#affichage des destinations
     connexion.commit()
     connexion.close()
     
-#2bis afficher les hotels d'une certraine destination
+#2bis afficher les hotels d'une certaine destination
 def listehotels(ville):#affichage des hotels 
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
@@ -389,9 +389,6 @@ def compte_ajoute():
     exist = result[1]
     return render_template("compte_ajoute.html", nom=nom, prenom=prenom, nb_enfants=nb_enfants, nb_adultes=nb_adultes, id=max_id, exist=exist)
     
-"""@app.route('/reserver')
-def reserver():
-    return render_template('reserver.html')"""
 
 @app.route('/affichedestinations')
 def affichedestinations():
@@ -400,6 +397,7 @@ def affichedestinations():
 @app.route('/afficheExcursion')
 def afficheExcursion():
     return render_template("afficheExcursion.html")
+    
 @app.route('/ajoutvoyage')
 def ajoutvoyage():
     return render_template("ajoutvoyage.html")
@@ -423,13 +421,17 @@ def ajoutExcursion():
 
 @app.route('/excursionajoute',  methods=['POST'])
 def excursionajoute():
-    id_activite = request.form.get('id_activite')
-    return render_template("excursionajoute.html")
+    id_client = str(request.form.get("id_client"))
+    id_excursion = str(request.form.get("id_excursion"))
+    date_excursion =  request.form.get("date_excursion")
+    
+    ajoutexcursion(id_client, id_excursion, date_excursion)
+    return render_template("excursionajoute.html", id_client= id_client,id_excursion= id_excursion,date_excursion= date_excursion)
 
 @app.route('/consultervoyage')
 def consultervoyage():
     listedestination()
-    ville=request.form.get('Dans quelle ville ?')
+    ville= request.form.get('ville')
     listehotels(ville)
     return render_template("consultervoyage.html")
     
