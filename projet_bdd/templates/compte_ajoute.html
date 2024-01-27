@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Le compte a été ajouter avec succcès</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css2.css')}}">
+</head>
+<header>
+  <h2>Le compte a été ajouter avec succcès</h2>
+</header>
+
+<section>
+    <nav>
+        <form action="{{ url_for('creer_compte') }}">
+            <input type="submit" value="Créer un compte client" />
+        </form>
+        <form action="{{ url_for('affichedestinations') }}">
+            <input type="submit" value="Consulter les destinations " />
+        </form>
+        <form action="{{ url_for('afficheExcursion') }}">
+            <input type="submit" value="Consulter les excursions " />
+        </form>
+        <form action="{{ url_for('affichelogement') }}">
+            <input type="submit" value="Consulter les Hotels " />
+        </form>
+        <form action="{{ url_for('ajoutvoyage') }}">
+            <input type="submit" value="Ajouter un voyage " />
+        </form>
+        <form action="{{ url_for('ajoutExcursion') }}">
+            <input type="submit" value="Ajouter une excursion au voyage" />
+        </form>
+        <form action="{{ url_for('consultervoyage') }}">
+            <input type="submit" value="Consulter les voyages à votre nom" />
+        </form>
+        <form action="{{ url_for('consulterExcursion') }}">
+            <input type="submit" value="Consulter les exursions à votre nom" />
+        </form>
+        <form action="{{ url_for('supprimer') }}">
+            <input type="submit" value="Supprimer un voyage" />
+        </form>
+        <form action="{{ url_for('supprimerCompte') }}">
+            <input type="submit" value="Supprimer votre compte client" />
+        </form>
+    </nav>
+
+<article>
+    {% if exist == 1 %}
+        <p>L'utilisateur existe déjà. Id {{id}}<p>
+    {% else %}
+        <p>Bonjour, le compte au nom de {{prenom}} {{nom}}, avec l'ID : {{id}} que vous avez creer, a bien été ajouté dans la base de donnée.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}"> <button class="btn">Retour</button></a>
+</article>
+  </section>
