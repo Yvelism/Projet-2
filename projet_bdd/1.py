@@ -186,26 +186,27 @@ c.execute("""
 
 #"1. Créer un compte client"
 def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
-    assert type(nb_enfants)==int
-    assert type(nb_adultes)==int
+    #assert type(nb_enfants)==int
+    #assert type(nb_adultes)==int
     connexion = sqlite3.connect('monagence.db')
-    c = connexion.cursor() # initialiser la connexion
+    c = connexion.cursor()
     #definition d'un id pour les nouveaux clients
-    c.execute("SELECT MAX(id_client) FROM client") 
+    c.execute("SELECT MAX(id_client) FROM client")
     
     max_id = c.fetchone()[0]
 
-    if max_id is not None: #si il y a deja un id définit 
+    if max_id is not None:  #si il y a deja un id définit 
         new_id = max_id + 1
     else: # si il n'y a pas d'id on lui donne l'id n°1
         new_id = 1
     addedId = 0
     ifExist = 0
 
-    existingClient = (nom,prenom, nb_enfants,nb_adultes) 
+    existingClient = (nom,prenom, nb_enfants,nb_adultes)
     newclient = (new_id, nom,prenom, nb_enfants,nb_adultes)
     c.execute("SELECT id_client FROM client WHERE (nom, prenom, nb_enfant, nb_adulte)=(?, ?,?,?)", existingClient)
-    existe_deja = c.fetchone() #vérification: le compte cient existe-t-il déjà ?
+    existe_deja = c.fetchone()  #vérification: le compte cient existe-t-il déjà ?
+
 
     if not existe_deja:
         c.execute("INSERT INTO client (id_client, nom, prenom, nb_enfant, nb_adulte) VALUES (?,?, ?,?,?)", newclient)
@@ -219,7 +220,7 @@ def creer_compte_SQL(nom,prenom,nb_enfants,nb_adultes):
     return addedId, ifExist
 
 #"2. Consulter la liste des destinations et des hôtels avec leur identifiant"
-def listedestination(): #affichage des destinations 
+def listedestination():  #affichage des destinations 
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
     
@@ -227,6 +228,8 @@ def listedestination(): #affichage des destinations
     destinations = c.fetchall()
     for destination in destinations:
         print(f"ID: {destination[0]}, Pays: {destination[1]}, Ville: {destination[2]}")
+
+    ville= input("Quelle ville choisissez-vous?")
     for destination in destinations:
         if destination[2]==ville:
             idv=destination[0]
@@ -239,8 +242,8 @@ def listedestination(): #affichage des destinations
                   
     connexion.commit()
     connexion.close()
-    
-#2bis afficher les hotels d'une certaine destination
+
+#2bis afficher les hotels d'une certraine destination
 def listehotels(ville):#affichage des hotels 
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
@@ -259,7 +262,6 @@ def listehotels(ville):#affichage des hotels
     connexion.commit()
     connexion.close()
 
-
 #"3. Reserver un voyage"
 def addvoyage(id_client,ville,logement,date,duree):
     connexion = sqlite3.connect('monagence.db')
@@ -270,11 +272,11 @@ def addvoyage(id_client,ville,logement,date,duree):
     connexion.close()
     
 #"4. Consulter la liste des excursions"
-def excursion(lieu,ville):
+def excursion(ville):
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
     
-    c.execute("SELECT * FROM excursions WHERE id_ville=?",(ville)) 
+    c.execute("SELECT * FROM excursions WHERE id_ville = ?",(ville)) 
     res= c.fetchall()
     for res in res:
         print(f"IDactivité: {res[0]}, Nom: {res[1]}, IDville: {res[2]}")
@@ -282,49 +284,44 @@ def excursion(lieu,ville):
     connexion.close()
     
 #"5. Supprimer un voyage"
-def removevoyage(client,ville,commandesupp):
+def removevoyage(client,ville,date):
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
-    
-    p = "DELETE FROM commande WHERE id_client = '" + client + "' AND date = '"+ commandesupp + "' "
+    p = "DELETE FROM commande WHERE id_client = '" + client + "' AND date = '" + date + "' "
     c.executescript(p)
-    print("Vous avez supprimé votre voyage à ", ville, "de la base de données")
-    connexion.commit()
-    connexion.close()     
-    
-#"6. Consulter les voyages réservés à votre nom"
-def commande():
-    connexion = sqlite3.connect('monagence.db')
-    c = connexion.cursor()
-    
-    c.execute("SELECT * FROM commande")
-    tab = c.fetchall()
-    for ligne in tab:
-        print(f"IDclient:{ligne[0]}, IDville:{ligne[1]}, IDlogement:{ligne[2]}, Date:{ligne[3]}, Duree:{ligne[4]}")
     connexion.commit()
     connexion.close()
-
+    
+#"6. Consulter les voyages réservés à votre nom"
+def commande(id_client, date):
+    connexion = sqlite3.connect('monagence.db')
+    c = connexion.cursor()
+    
+    c.execute("SELECT * FROM commande WHERE id_client = '" + id_client + "' AND date = '" + date + "' ")
+    
+    connexion.commit()
+    connexion.close()
+    
 #"7. Ajouter une excursion à votre voyage"
 def ajoutexcursion(id_client,id_excursion,date_excursion):
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
     
-    c.execute("INSERT INTO choix_activite (id_client, id_activite, date, options) VALUES (?, ?, ?, ?)",
-            (id_client, id_excursion, date_excursion, ))
-    print("Excursion réservée avec succès!")
+    c.execute("INSERT INTO choix_activite (id_client, id_activite, date) VALUES (?, ?, ?)",(id_client, id_excursion, date_excursion))
+    
     connexion.commit()
     connexion.close()
 
 
     
 #"8. Consulter les excursions résérvées à votre nom"
-def consultexcursion(id_client_consultation):
+def consulterExcursion(id_client):
     connexion = sqlite3.connect('monagence.db')
     c = connexion.cursor()
   
-    c.execute("SELECT * FROM choix_activite WHERE id_client=?", (id_client_consultation,))
+    c.execute("SELECT * FROM choix_activite WHERE id_client = ?", (id_client))
     reservations_excursions = c.fetchall()
-    print(f"Réservations d'excursions pour le client {id_client_consultation} :")
+    print(f"Réservations d'excursions pour le client {id_client} :")
     for reservation in reservations_excursions:
         print(f"ID Activité: {reservation[1]}, Date: {reservation[2]}")
     connexion.commit()
@@ -344,14 +341,12 @@ def removecompte(id,verif):
         print("Compte client supprimé")
     elif verif == "Non":
         print("Action annulée")
+
     connexion.commit()
     connexion.close()
 
 
-#10. quitter 
-def quit():
-    ...
-   
+
 # ---- fin des instructions SQL
 
 #Validation
@@ -381,14 +376,13 @@ def creer_compte():
 def compte_ajoute():
     nom = request.form.get('nom')
     prenom = request.form.get('prenom')
-    nb_enfants = (request.form.get('nb_enfants'))
-    nb_adultes = (request.form.get('nb_adultes'))
+    nb_enfants = str(request.form.get('nb_enfants'))
+    nb_adultes = str(request.form.get('nb_adultes'))
     # Insére le compte client dans la base de données SQLite
     result = creer_compte_SQL(nom, prenom, nb_enfants, nb_adultes) # crée une rangée dans la table SQL avec ces informations
     max_id = result[0]
     exist = result[1]
     return render_template("compte_ajoute.html", nom=nom, prenom=prenom, nb_enfants=nb_enfants, nb_adultes=nb_adultes, id=max_id, exist=exist)
-    
 
 @app.route('/affichedestinations')
 def affichedestinations():
@@ -397,7 +391,11 @@ def affichedestinations():
 @app.route('/afficheExcursion')
 def afficheExcursion():
     return render_template("afficheExcursion.html")
-    
+
+@app.route('/affichelogement')
+def affichelogement():
+    return render_template("affichelogement.html")
+
 @app.route('/ajoutvoyage')
 def ajoutvoyage():
     return render_template("ajoutvoyage.html")
@@ -409,11 +407,9 @@ def voyage_ajoute():
     logement= request.form.get('id_logement')
     date = request.form.get('date')
     duree = request.form.get('duree')
-    
-    # Insére le compte client dans la base de données SQLite
-    addvoyage(id_client,ville,logement,date,duree) # crée une rangée dans la table SQL avec ces informations
-    return render_template("voyage_ajoute.html", id_client=id_client,ville=ville,logement= logement,date=date,duree=duree)
 
+    addvoyage(id_client,ville,logement,date,duree)
+    return render_template("voyage_ajoute.html", id_client=id_client,ville=ville,logement= logement,date=date,duree=duree)
 
 @app.route('/ajoutExcursion')
 def ajoutExcursion():
@@ -421,44 +417,58 @@ def ajoutExcursion():
 
 @app.route('/excursionajoute',  methods=['POST'])
 def excursionajoute():
-    id_client = str(request.form.get("id_client"))
+    id_client =str(request.form.get("id_client"))
     id_excursion = str(request.form.get("id_excursion"))
     date_excursion =  request.form.get("date_excursion")
-    
+
     ajoutexcursion(id_client, id_excursion, date_excursion)
     return render_template("excursionajoute.html", id_client= id_client,id_excursion= id_excursion,date_excursion= date_excursion)
 
 @app.route('/consultervoyage')
 def consultervoyage():
-    listedestination()
-    ville= request.form.get('ville')
-    listehotels(ville)
     return render_template("consultervoyage.html")
-    
+
+@app.route('/voyageconsulter',  methods=['POST'])
+def voyageconsulter():
+    id_client = str(request.form.get("id_client"))
+    date = request.form.get("date")
+    commande(id_client, date)
+    return render_template("voyageconsulter.php", id_client = id_client, date = date)
+
 @app.route('/consulterExcursion')
 def consulterExcursion():
-    excursion()
     return render_template("consulterExcursion.html")
+
+@app.route('/excursionconsulter',  methods=['POST'])
+def excursionconsulter():
+    id_client =str(request.form.get("id_client"))
+    consulterExcursion()
+    return render_template("excursionconsulter.php", id_client = id_client)
 
 @app.route('/supprimer')
 def supprimer():
-    return render_template("supprimer.html")
+    return render_template("supprimer.html",)
 
-@app.route('/supprimerCompte')
-def supprimerCompte():
-    return render_template("supprimerCompte.html")
-
-
-@app.route('/suppvoyage', methods=['POST'])
-def suppvoyage():
+@app.route('/voyagesupp', methods=['POST'])
+def voyagesupp():
     id_client = request.form.get('id_client')
     ville = request.form.get("ville")
     date = request.form.get('date')
    
-    # Insére le compte client dans la base de données SQLite
-    removevoyage(client,ville,commandesupp)
-    return render_template("ajoutvoyage.html", client=client,ville=ville,date=date)
+    removevoyage(id_client,ville,date)
+    return render_template("voyagesupp.html", id_client=id_client,ville=ville,date=date)
 
+@app.route('/supprimerCompte')
+def supprimerCompte():
+    return render_template("supprimerCompte.html",)
+
+@app.route('/comptesupp', methods=['POST'])
+def comptesupp():
+    id_client = request.form.get('id_client')
+    ville = request.form.get('ville')
+    # Insére le compte client dans la base de données SQLite
+    removecompte(id_client,ville)
+    return render_template("comptesupp.html", id_client=id_client,ville=ville)
 
 if __name__ == '__main__': #vérifie si le script est exécuté directement 
     #(plutôt que d'être importé en tant que module).
