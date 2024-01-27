@@ -49,7 +49,7 @@
         $chemin_absolu = realpath('monagence.db');
         $db = new PDO('sqlite:' . $chemin_absolu);
         // Requête SQL pour récupérer les données
-        $query = $db->query('SELECT * FROM excursions WHERE id_client = :(id_client)');
+        $query = $db->query('SELECT * FROM excursions');
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
