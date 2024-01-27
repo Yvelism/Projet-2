@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Supprimer un compte client</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}">
+</head>
+<header>
+  <h2>Supprimer un compte client</h2>
+</header>
+
+<section>
+    <nav>
+        <form action="{{ url_for('creer_compte') }}">
+            <input type="submit" value="Créer un compte client" />
+        </form>
+        <form action="{{ url_for('affichedestinations') }}">
+            <input type="submit" value="Consulter les destinations " />
+        </form>
+        <form action="{{ url_for('afficheExcursion') }}">
+            <input type="submit" value="Consulter les excursions " />
+        </form>
+        <form action="{{ url_for('affichelogement') }}">
+            <input type="submit" value="Consulter les Hotels " />
+        </form>
+        <form action="{{ url_for('ajoutvoyage') }}">
+            <input type="submit" value="Ajouter un voyage " />
+        </form>
+        <form action="{{ url_for('ajoutExcursion') }}">
+            <input type="submit" value="Ajouter une excursion au voyage" />
+        </form>
+        <form action="{{ url_for('consultervoyage') }}">
+            <input type="submit" value="Consulter les voyages à votre nom" />
+        </form>
+        <form action="{{ url_for('consulterExcursion') }}">
+            <input type="submit" value="Consulter les exursions à votre nom" />
+        </form>
+        <form action="{{ url_for('supprimer') }}">
+            <input type="submit" value="Supprimer un voyage" />
+        </form>
+        <form action="{{ url_for('supprimerCompte') }}">
+            <input type="submit" value="Supprimer votre compte client" />
+        </form>
+    </nav>
+      <article>
+        <form action="http://localhost:5000/comptesupp" method="post">
+            <label for="id_client">identifiant client</label>
+            <input type="number" name="id_client" id="id_client" placeholder="Entrez votre identifiant client..." required="required" min = 1 />
+            
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Entrez votre nom..." required="required"/>
+
+            <input type="submit" value="Envoyer" />
+        </form>
+      </article>
+</section>
